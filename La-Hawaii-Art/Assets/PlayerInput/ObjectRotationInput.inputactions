@@ -1,0 +1,52 @@
+{
+    "name": "ObjectRotation",
+    "maps": [
+        {
+            "name": "Object Rotation",
+            "id": "d7c9d519-7a74-43e3-9af4-d04f25df6385",
+            "actions": [
+                {
+                    "name": "Rotate Horizontal",
+                    "type": "Button",
+                    "id": "4a2331fb-4d74-42c7-bed2-fe3159aaa9ad",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Rotate Verticle",
+                    "type": "Button",
+                    "id": "7630f031-0316-4e05-aad9-2d7b6850233a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0b4ea907-ab93-433b-a9ec-aef0747c5ca9",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate Horizontal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e47acaa9-ea89-4d7c-9f6d-7b6a2245ec0d",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate Verticle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
