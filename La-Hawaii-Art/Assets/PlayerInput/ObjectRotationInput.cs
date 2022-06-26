@@ -49,6 +49,14 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""d229e0f4-8f90-45d0-b3a7-e51a50260e6f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -139,6 +147,17 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fd7ecdb-aaea-40b5-b661-ec4aa5efcec5"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -151,6 +170,7 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
         m_ObjectRotation_RotateVerticle = m_ObjectRotation.FindAction("Rotate Verticle", throwIfNotFound: true);
         m_ObjectRotation_Movement = m_ObjectRotation.FindAction("Movement", throwIfNotFound: true);
         m_ObjectRotation_Look = m_ObjectRotation.FindAction("Look", throwIfNotFound: true);
+        m_ObjectRotation_Select = m_ObjectRotation.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,6 +224,7 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
     private readonly InputAction m_ObjectRotation_RotateVerticle;
     private readonly InputAction m_ObjectRotation_Movement;
     private readonly InputAction m_ObjectRotation_Look;
+    private readonly InputAction m_ObjectRotation_Select;
     public struct ObjectRotationActions
     {
         private @ObjectRotationInput m_Wrapper;
@@ -212,6 +233,7 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
         public InputAction @RotateVerticle => m_Wrapper.m_ObjectRotation_RotateVerticle;
         public InputAction @Movement => m_Wrapper.m_ObjectRotation_Movement;
         public InputAction @Look => m_Wrapper.m_ObjectRotation_Look;
+        public InputAction @Select => m_Wrapper.m_ObjectRotation_Select;
         public InputActionMap Get() { return m_Wrapper.m_ObjectRotation; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -233,6 +255,9 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnLook;
+                @Select.started -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_ObjectRotationActionsCallbackInterface = instance;
             if (instance != null)
@@ -249,6 +274,9 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -259,5 +287,6 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
         void OnRotateVerticle(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }
