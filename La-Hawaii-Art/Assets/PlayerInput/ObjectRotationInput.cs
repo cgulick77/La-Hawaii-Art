@@ -57,6 +57,22 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Journal Pages Controls Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""3aa56136-677c-4a15-9f61-016a510f7005"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Journal Pages Controls Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""7eae110c-1c40-47dc-b3e8-750dad0a8299"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -158,6 +174,28 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15d1cfb1-8736-4403-9768-80631c35a1be"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Journal Pages Controls Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef55d2f9-ce8c-4a88-999e-c0f1b7c8ca8e"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Journal Pages Controls Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -171,6 +209,8 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
         m_ObjectRotation_Movement = m_ObjectRotation.FindAction("Movement", throwIfNotFound: true);
         m_ObjectRotation_Look = m_ObjectRotation.FindAction("Look", throwIfNotFound: true);
         m_ObjectRotation_Select = m_ObjectRotation.FindAction("Select", throwIfNotFound: true);
+        m_ObjectRotation_JournalPagesControlsLeft = m_ObjectRotation.FindAction("Journal Pages Controls Left", throwIfNotFound: true);
+        m_ObjectRotation_JournalPagesControlsRight = m_ObjectRotation.FindAction("Journal Pages Controls Right", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -225,6 +265,8 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
     private readonly InputAction m_ObjectRotation_Movement;
     private readonly InputAction m_ObjectRotation_Look;
     private readonly InputAction m_ObjectRotation_Select;
+    private readonly InputAction m_ObjectRotation_JournalPagesControlsLeft;
+    private readonly InputAction m_ObjectRotation_JournalPagesControlsRight;
     public struct ObjectRotationActions
     {
         private @ObjectRotationInput m_Wrapper;
@@ -234,6 +276,8 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_ObjectRotation_Movement;
         public InputAction @Look => m_Wrapper.m_ObjectRotation_Look;
         public InputAction @Select => m_Wrapper.m_ObjectRotation_Select;
+        public InputAction @JournalPagesControlsLeft => m_Wrapper.m_ObjectRotation_JournalPagesControlsLeft;
+        public InputAction @JournalPagesControlsRight => m_Wrapper.m_ObjectRotation_JournalPagesControlsRight;
         public InputActionMap Get() { return m_Wrapper.m_ObjectRotation; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +302,12 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
                 @Select.started -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnSelect;
                 @Select.performed -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnSelect;
                 @Select.canceled -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnSelect;
+                @JournalPagesControlsLeft.started -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnJournalPagesControlsLeft;
+                @JournalPagesControlsLeft.performed -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnJournalPagesControlsLeft;
+                @JournalPagesControlsLeft.canceled -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnJournalPagesControlsLeft;
+                @JournalPagesControlsRight.started -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnJournalPagesControlsRight;
+                @JournalPagesControlsRight.performed -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnJournalPagesControlsRight;
+                @JournalPagesControlsRight.canceled -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnJournalPagesControlsRight;
             }
             m_Wrapper.m_ObjectRotationActionsCallbackInterface = instance;
             if (instance != null)
@@ -277,6 +327,12 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
+                @JournalPagesControlsLeft.started += instance.OnJournalPagesControlsLeft;
+                @JournalPagesControlsLeft.performed += instance.OnJournalPagesControlsLeft;
+                @JournalPagesControlsLeft.canceled += instance.OnJournalPagesControlsLeft;
+                @JournalPagesControlsRight.started += instance.OnJournalPagesControlsRight;
+                @JournalPagesControlsRight.performed += instance.OnJournalPagesControlsRight;
+                @JournalPagesControlsRight.canceled += instance.OnJournalPagesControlsRight;
             }
         }
     }
@@ -288,5 +344,7 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+        void OnJournalPagesControlsLeft(InputAction.CallbackContext context);
+        void OnJournalPagesControlsRight(InputAction.CallbackContext context);
     }
 }

@@ -44,6 +44,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Journal Pages Controls Left",
+                    "type": "Button",
+                    "id": "3aa56136-677c-4a15-9f61-016a510f7005",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Journal Pages Controls Right",
+                    "type": "Button",
+                    "id": "7eae110c-1c40-47dc-b3e8-750dad0a8299",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -143,6 +159,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "15d1cfb1-8736-4403-9768-80631c35a1be",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Journal Pages Controls Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef55d2f9-ce8c-4a88-999e-c0f1b7c8ca8e",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Journal Pages Controls Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
