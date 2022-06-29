@@ -57,7 +57,7 @@ public class Journal : MonoBehaviour
 
     private void journalRight(InputAction.CallbackContext obj)
     {
-        if (pageNum <= journalPages.Length -1)
+        if (pageNum < journalPages.Length -1)
         {
             pageNum +=1;
             prev = currentPage;
