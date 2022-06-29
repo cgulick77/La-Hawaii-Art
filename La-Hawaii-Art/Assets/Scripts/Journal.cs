@@ -10,6 +10,7 @@ public class Journal : MonoBehaviour
     private InputAction journalControls;
     private GameObject currentPage, next,prev;
     public int pageNum;
+    public bool active;
 
     
 
@@ -21,7 +22,11 @@ public class Journal : MonoBehaviour
         objectRotationInput = new ObjectRotationInput();
          GameObject cover = journalPages[pageNum];
          currentPage = cover;
-         currentPage.SetActive(true);
+         if (active)
+         {
+            currentPage.SetActive(true);
+         }
+         
 
         
     }
@@ -42,7 +47,9 @@ public class Journal : MonoBehaviour
 
     private void journalLeft(InputAction.CallbackContext obj)
     {
-        if (pageNum > 0)
+        if (active)
+        {
+            if (pageNum > 0)
         {
             Debug.Log("Left Page");
             pageNum -=1;
@@ -52,12 +59,16 @@ public class Journal : MonoBehaviour
             next.SetActive(false);
             Debug.Log(pageNum);
         }
+        }
+        
         
     }   
 
     private void journalRight(InputAction.CallbackContext obj)
     {
-        if (pageNum < journalPages.Length -1)
+        if (active)
+        {
+             if (pageNum < journalPages.Length -1)
         {
             pageNum +=1;
             prev = currentPage;
@@ -66,8 +77,7 @@ public class Journal : MonoBehaviour
             prev.SetActive(false);
             Debug.Log(pageNum);
         }
-        
-
-        
+        }
+     
     }
 }
