@@ -59,6 +59,10 @@ public class Journal : MonoBehaviour
 
         objectRotationInput.ObjectRotation.JournalExit.performed += journalExit;
         objectRotationInput.ObjectRotation.JournalExit.actionMap.Enable();
+
+        objectRotationInput.ObjectRotation.GameExit.performed += exitGame;
+        objectRotationInput.ObjectRotation.GameExit.Enable();
+
         
     }
 
@@ -66,6 +70,7 @@ public class Journal : MonoBehaviour
          objectRotationInput.ObjectRotation.JournalPagesControlsLeft.Disable();
          objectRotationInput.ObjectRotation.JournalPagesControlsRight.Disable();
          objectRotationInput.ObjectRotation.JournalExit.actionMap.Disable();
+         objectRotationInput.ObjectRotation.GameExit.Disable();
     }
 
     // Page functions
@@ -110,6 +115,11 @@ public class Journal : MonoBehaviour
         active = false;
         currentPage.SetActive(false);
         Debug.Log("Exit");
+    }
+
+    private void exitGame (InputAction.CallbackContext obj)
+    {
+        Application.Quit();
     }
 
     IEnumerator spawnInfoMark()

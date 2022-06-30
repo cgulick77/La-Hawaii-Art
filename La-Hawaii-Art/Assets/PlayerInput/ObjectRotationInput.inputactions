@@ -68,6 +68,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "GameExit",
+                    "type": "Button",
+                    "id": "b6c91b78-481d-4345-8ff5-82dc52b40ec5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -195,11 +203,22 @@
                 {
                     "name": "",
                     "id": "cb8b78d1-1372-4190-b895-d8ec42b775ef",
-                    "path": "<Keyboard>/backquote",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Journal Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47a78d89-8b40-42c0-b058-d167d9450459",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GameExit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

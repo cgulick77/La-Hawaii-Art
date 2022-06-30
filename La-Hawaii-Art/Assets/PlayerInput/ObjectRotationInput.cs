@@ -81,6 +81,14 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""GameExit"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6c91b78-481d-4345-8ff5-82dc52b40ec5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -208,11 +216,22 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cb8b78d1-1372-4190-b895-d8ec42b775ef"",
-                    ""path"": ""<Keyboard>/backquote"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Journal Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47a78d89-8b40-42c0-b058-d167d9450459"",
+                    ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GameExit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -231,6 +250,7 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
         m_ObjectRotation_JournalPagesControlsLeft = m_ObjectRotation.FindAction("Journal Pages Controls Left", throwIfNotFound: true);
         m_ObjectRotation_JournalPagesControlsRight = m_ObjectRotation.FindAction("Journal Pages Controls Right", throwIfNotFound: true);
         m_ObjectRotation_JournalExit = m_ObjectRotation.FindAction("Journal Exit", throwIfNotFound: true);
+        m_ObjectRotation_GameExit = m_ObjectRotation.FindAction("GameExit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,6 +308,7 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
     private readonly InputAction m_ObjectRotation_JournalPagesControlsLeft;
     private readonly InputAction m_ObjectRotation_JournalPagesControlsRight;
     private readonly InputAction m_ObjectRotation_JournalExit;
+    private readonly InputAction m_ObjectRotation_GameExit;
     public struct ObjectRotationActions
     {
         private @ObjectRotationInput m_Wrapper;
@@ -300,6 +321,7 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
         public InputAction @JournalPagesControlsLeft => m_Wrapper.m_ObjectRotation_JournalPagesControlsLeft;
         public InputAction @JournalPagesControlsRight => m_Wrapper.m_ObjectRotation_JournalPagesControlsRight;
         public InputAction @JournalExit => m_Wrapper.m_ObjectRotation_JournalExit;
+        public InputAction @GameExit => m_Wrapper.m_ObjectRotation_GameExit;
         public InputActionMap Get() { return m_Wrapper.m_ObjectRotation; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -333,6 +355,9 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
                 @JournalExit.started -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnJournalExit;
                 @JournalExit.performed -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnJournalExit;
                 @JournalExit.canceled -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnJournalExit;
+                @GameExit.started -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnGameExit;
+                @GameExit.performed -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnGameExit;
+                @GameExit.canceled -= m_Wrapper.m_ObjectRotationActionsCallbackInterface.OnGameExit;
             }
             m_Wrapper.m_ObjectRotationActionsCallbackInterface = instance;
             if (instance != null)
@@ -361,6 +386,9 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
                 @JournalExit.started += instance.OnJournalExit;
                 @JournalExit.performed += instance.OnJournalExit;
                 @JournalExit.canceled += instance.OnJournalExit;
+                @GameExit.started += instance.OnGameExit;
+                @GameExit.performed += instance.OnGameExit;
+                @GameExit.canceled += instance.OnGameExit;
             }
         }
     }
@@ -375,5 +403,6 @@ public class @ObjectRotationInput : IInputActionCollection, IDisposable
         void OnJournalPagesControlsLeft(InputAction.CallbackContext context);
         void OnJournalPagesControlsRight(InputAction.CallbackContext context);
         void OnJournalExit(InputAction.CallbackContext context);
+        void OnGameExit(InputAction.CallbackContext context);
     }
 }
