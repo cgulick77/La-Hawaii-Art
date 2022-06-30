@@ -11,6 +11,8 @@ public class Journal : MonoBehaviour
     private GameObject currentPage, next,prev;
     public int pageNum;
     public bool active;
+    public GameObject Questionmark, spawner;
+    [SerializeField] LayerMask layerMask;
 
     
 
@@ -22,14 +24,30 @@ public class Journal : MonoBehaviour
         objectRotationInput = new ObjectRotationInput();
          GameObject cover = journalPages[pageNum];
          currentPage = cover;
-         if (active)
-         {
-            currentPage.SetActive(true);
-         }
+        
          
 
         
     }
+    
+     void FixedUpdate() {
+        //Starts the journasl on the first page, checks if the journal is active
+         if (active)
+         {
+            currentPage.SetActive(true);
+         }
+
+         if(Physics.Raycast(spawner.transform.position, spawner.transform.TransformDirection(Vector3.up), out RaycastHit hitInfo, 20f, layerMask))
+         {
+            Debug.DrawRay(spawner.transform.position, spawner.transform.TransformDirection(Vector3.up) * 2f, Color.red);
+         }
+         else {
+             Debug.DrawRay(spawner.transform.position, spawner.transform.TransformDirection(Vector3.up) * 2f, Color.green);
+            StartCoroutine(spawnInfoMark());
+         }
+
+    }
+    
 
     // Update is called once per frame
     void OnEnable() {
@@ -38,13 +56,19 @@ public class Journal : MonoBehaviour
 
         objectRotationInput.ObjectRotation.JournalPagesControlsRight.performed += journalRight;
         objectRotationInput.ObjectRotation.JournalPagesControlsRight.Enable();
+
+        objectRotationInput.ObjectRotation.JournalExit.performed += journalExit;
+        objectRotationInput.ObjectRotation.JournalExit.actionMap.Enable();
+        
     }
 
     void OnDisable() {
          objectRotationInput.ObjectRotation.JournalPagesControlsLeft.Disable();
          objectRotationInput.ObjectRotation.JournalPagesControlsRight.Disable();
+         objectRotationInput.ObjectRotation.JournalExit.actionMap.Disable();
     }
 
+    // Page functions
     private void journalLeft(InputAction.CallbackContext obj)
     {
         if (active)
@@ -57,7 +81,7 @@ public class Journal : MonoBehaviour
             currentPage = journalPages[pageNum];
             currentPage.SetActive(true);
             next.SetActive(false);
-            Debug.Log(pageNum);
+            //Debug.Log(pageNum);
         }
         }
         
@@ -75,9 +99,26 @@ public class Journal : MonoBehaviour
             currentPage = journalPages[pageNum];
             currentPage.SetActive(true);
             prev.SetActive(false);
-            Debug.Log(pageNum);
+            //Debug.Log(pageNum);
         }
         }
      
     }
+
+    private void journalExit (InputAction.CallbackContext obj)
+    {
+        active = false;
+        currentPage.SetActive(false);
+        Debug.Log("Exit");
+    }
+
+    IEnumerator spawnInfoMark()
+    {
+        active = true;
+        yield return new WaitForSeconds(1);
+        Questionmark.SetActive(true);
+        StopAllCoroutines();
+    }
+
+     
 }

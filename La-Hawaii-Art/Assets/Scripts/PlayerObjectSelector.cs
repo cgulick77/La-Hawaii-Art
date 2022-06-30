@@ -36,13 +36,13 @@ public class PlayerObjectSelector : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hitInfo.distance, Color.red);
 
-            if(hitInfo.collider.tag == "Interactable" && objectRotationInput.ObjectRotation.Select.enabled == true)
+            if(hitInfo.collider.tag == "Interactable" && mouseClicked == true)
             {
-                objInteract(hitInfo.transform.gameObject);
+                //objInteract(hitInfo.transform.gameObject);
                
             }
             else{
-                  objDisable(hitInfo.transform.gameObject);
+                  //bjDisable(hitInfo.transform.gameObject);
             }
         }
         else{
@@ -54,7 +54,7 @@ public class PlayerObjectSelector : MonoBehaviour
 
     private void selectObj(InputAction.CallbackContext obj)
    {
-     //Debug.Log("MouseDown");
+     mouseClicked = true;
    }
 
    private void objInteract(GameObject pickObj)
